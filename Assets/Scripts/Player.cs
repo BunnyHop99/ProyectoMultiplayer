@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using MLAPI;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     [SerializeField, Range(0.1f, 100f)]
     float jumpForce;
@@ -43,7 +44,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        playerControls.Gameplay.Jump.performed += ctx => Jump();
+        if(IsLocalPlayer)
+        {
+            playerControls.Gameplay.Jump.performed += ctx => Jump();
+        }
+
     }
 
     void FixedUpdate()
@@ -54,17 +59,20 @@ public class Player : MonoBehaviour
     }
         
     void Jump()
-    {   
-        if(IsGrounding)
+    {
+        if (IsLocalPlayer)
         {
-            anim.SetTrigger("JumpON");
-            rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+            if (IsGrounding)
+            {
+                anim.SetTrigger("JumpON");
+                rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
 
-        if(IsGroundingPlatform && rb2D.velocity.y == 0)
-        {
-            anim.SetTrigger("JumpON");
-            rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (IsGroundingPlatform && rb2D.velocity.y == 0)
+            {
+                anim.SetTrigger("JumpON");
+                rb2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
 

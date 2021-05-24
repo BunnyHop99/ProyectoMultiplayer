@@ -28,6 +28,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Jump2",
+                    "type": "Button",
+                    "id": "d3a1a381-3ab4-4449-99fa-6e5c12b913ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fall2",
+                    "type": "Button",
+                    "id": "6afed251-04c5-4f3b-ba8a-8882811499c3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -116,6 +132,28 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e3c5ca0-a579-48e1-8984-dde72dcb7052",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Jump2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "45ebcf7e-40a0-4341-9e84-1492c786ae34",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Fall2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

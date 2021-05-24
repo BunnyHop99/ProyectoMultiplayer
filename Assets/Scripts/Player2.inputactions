@@ -1,0 +1,58 @@
+{
+    "name": "Player2",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "f396aff6-5a55-414e-8db0-93cd60415442",
+            "actions": [
+                {
+                    "name": "Jump2",
+                    "type": "Button",
+                    "id": "74444157-58b2-45ec-aec0-cdf40a2ae819",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fall2",
+                    "type": "Button",
+                    "id": "bd77bcef-356b-4afe-af48-1eae77116f68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7f459283-9fcd-4493-963e-d148caa209a1",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard2",
+                    "action": "Jump2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ffe34e97-b6b2-41d1-866b-15080645bda5",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard2",
+                    "action": "Fall2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Keyboard2",
+            "bindingGroup": "Keyboard2",
+            "devices": []
+        }
+    ]
+}

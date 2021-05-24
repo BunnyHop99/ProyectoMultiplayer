@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9102110856727761710}
   - component: {fileID: -3512800286370891434}
   - component: {fileID: 3439256176167886366}
+  - component: {fileID: 327806824308431779}
   - component: {fileID: 4567068129198301411}
   m_Layer: 0
   m_Name: barril
@@ -122,6 +123,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 225a002cd2c82db4886e33b8f1a0ad2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &327806824308431779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461262295308767074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9847ea8f9c4bfc46a0d307f5a631e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &4567068129198301411

@@ -41,6 +41,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump2"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3a1a381-3ab4-4449-99fa-6e5c12b913ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fall2"",
+                    ""type"": ""Button"",
+                    ""id"": ""6afed251-04c5-4f3b-ba8a-8882811499c3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -131,6 +147,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Fall"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e3c5ca0-a579-48e1-8984-dde72dcb7052"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45ebcf7e-40a0-4341-9e84-1492c786ae34"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Fall2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -154,6 +192,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Fall = m_Gameplay.FindAction("Fall", throwIfNotFound: true);
+        m_Gameplay_Jump2 = m_Gameplay.FindAction("Jump2", throwIfNotFound: true);
+        m_Gameplay_Fall2 = m_Gameplay.FindAction("Fall2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -206,6 +246,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Fall;
+    private readonly InputAction m_Gameplay_Jump2;
+    private readonly InputAction m_Gameplay_Fall2;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -213,6 +255,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Fall => m_Wrapper.m_Gameplay_Fall;
+        public InputAction @Jump2 => m_Wrapper.m_Gameplay_Jump2;
+        public InputAction @Fall2 => m_Wrapper.m_Gameplay_Fall2;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -231,6 +275,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Fall.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall;
                 @Fall.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall;
                 @Fall.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall;
+                @Jump2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Jump2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Jump2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump2;
+                @Fall2.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall2;
+                @Fall2.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall2;
+                @Fall2.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFall2;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -244,6 +294,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Fall.started += instance.OnFall;
                 @Fall.performed += instance.OnFall;
                 @Fall.canceled += instance.OnFall;
+                @Jump2.started += instance.OnJump2;
+                @Jump2.performed += instance.OnJump2;
+                @Jump2.canceled += instance.OnJump2;
+                @Fall2.started += instance.OnFall2;
+                @Fall2.performed += instance.OnFall2;
+                @Fall2.canceled += instance.OnFall2;
             }
         }
     }
@@ -262,5 +318,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFall(InputAction.CallbackContext context);
+        void OnJump2(InputAction.CallbackContext context);
+        void OnFall2(InputAction.CallbackContext context);
     }
 }

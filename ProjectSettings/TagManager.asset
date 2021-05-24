@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Border
+  - Player2
+  - gei
   layers:
   - Default
   - TransparentFX
