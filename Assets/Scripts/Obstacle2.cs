@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Obstacle : MonoBehaviour
 {
     private GameObject player2;
+
     void Start()
     {
         player2 = GameObject.FindGameObjectWithTag("Player2");
@@ -23,3 +25,4 @@ public class Obstacle : MonoBehaviour
         }
     }
 }
+

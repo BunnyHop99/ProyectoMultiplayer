@@ -4,43 +4,55 @@ using UnityEngine;
 using MLAPI;
 using MLAPI.Spawning;
 using MLAPI.Transports.UNET;
+using UnityEngine.UI;
 using System;
 
 public class MenuScript : MonoBehaviour
 {
     public GameObject menuPanel;
+    public InputField inputField;
 
-    public string ipAddress = "127.0.0.1";
-
-    UNetTransport transport;
-
-    public void Host()
+    private void Start()
     {
-        menuPanel.SetActive(false);
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
-        NetworkManager.Singleton.StartHost(randomShit2(),Quaternion.identity);
     }
-
 
     private void ApprovalCheck(byte[] connectionData, ulong clientID, NetworkManager.ConnectionApprovedDelegate callback)
     {
+        bool approve = false;
+
+        string password = System.Text.Encoding.ASCII.GetString(connectionData);
+        if (password == "mygame")
+        {
+            approve = true;
+        }
+
         Debug.Log("Approving a connection");
 
         ulong? prefabHash = NetworkSpawnManager.GetPrefabHashFromGenerator("Player2");
-        callback(true, prefabHash, true, randomShit(), Quaternion.identity);
+        callback(true, prefabHash, approve, randomShit(), Quaternion.identity);
+    }
+
+    public void Host()
+    {
+        NetworkManager.Singleton.StartHost(randomShit2(), Quaternion.identity);
+        menuPanel.SetActive(false);
     }
 
     public void Join()
     {
-        transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
-        transport.ConnectAddress = ipAddress;
-        menuPanel.SetActive(false);
-        NetworkManager.Singleton.StartClient();
-    }
+        if(inputField.text.Length <=0 )
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = "127.0.0.1";
+        }
+        else
+        {
+            NetworkManager.Singleton.GetComponent<UNetTransport>().ConnectAddress = inputField.text;
+        }
 
-    public void IPAddressChanged(string newAddress)
-    {
-        this.ipAddress = newAddress;
+        NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("mygame");
+        NetworkManager.Singleton.StartClient();
+        menuPanel.SetActive(false);
     }
 
     Vector3 randomShit()

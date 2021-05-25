@@ -15,4 +15,14 @@ public class scenechanger : MonoBehaviour
     {
         SceneManager.LoadScene("SoloPlay");
     }
+
+    public void instruccion()
+    {
+        SceneManager.LoadScene("instructions");
+    }
+
+    public void menu()
+    {
+        SceneManager.LoadScene("Principal");
+    }
 }
